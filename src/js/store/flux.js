@@ -1,42 +1,51 @@
+import avatar from "../../img/avatar.jpeg"
+
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			demo: [
+			contacts: [
 				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
+				  name: "Julian",
+				  address: "Somewhere in the UK",
+				  phone: "123456000",
+				  email: "julian@4geeks.com",
+				  img: avatar,
 				},
 				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			]
-		},
+					name: "Marco",
+					address: "Somewhere in the Nederlands",
+					phone: "123456000",
+					email: "marco@4geeks.com",
+					img: avatar,
+				},
+				{
+					name: "Andres",
+					address: "Somewhere in the Portugal",
+					phone: "123456000",
+					email: "andres@4geeks.com",
+					img: avatar,
+				},
+			  ],
+			},
 		actions: {
 			// Use getActions to call a function within a fuction
-			exampleFunction: () => {
-				getActions().changeColor(0, "green");
-			},
-			loadSomeData: () => {
-				/**
-					fetch().then().then(data => setStore({ "foo": data.bar }))
-				*/
-			},
-			changeColor: (index, color) => {
-				//get the store
-				const store = getStore();
-
-				//we have to loop the entire demo array to look for the respective index
-				//and change its color
-				const demo = store.demo.map((elm, i) => {
-					if (i === index) elm.background = color;
-					return elm;
-				});
-
-				//reset the global store
-				setStore({ demo: demo });
+			addContact: (contact) => {
+				let store = getStore();
+				let newContacts = [...getStore().contacts, contact];
+				setStore({ contacts: newContacts });
+			  },
+			  delContact: (index) => {
+				let newContacts = [...getStore().contacts];
+				newContacts.splice(index, 1);
+				setStore({ contacts: newContacts });
+			  },
+			  updateContact: (data, index) => {
+				let newContacts = [...getStore().contacts];
+				newContacts[index] = {
+				  ...data,
+				  img: badguys,
+				};
+				setStore({ contacts: newContacts });
 			}
 		}
 	};

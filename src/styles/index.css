@@ -1,3 +1,13 @@
-/* 
-    General Styles
-*/
+body{
+    background-color: #66717E;
+    color: aliceblue;
+}
+
+.grey{
+    background-color: #66717E;
+    color: aliceblue;
+}
+.bluebluetext{
+  
+    color: rgb(36, 153, 255);
+}
